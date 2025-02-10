@@ -1,0 +1,22 @@
+id: send_email
+name: Send an email using composio gmail tool
+description: Send an email to a recipient
+
+metadata:
+  language: python
+  framework: langchain
+  tools_used:
+    - gmail
+
+files_to_list:
+  - script.js
+  - utils.js
+
+inputs_required_when_running:
+  - COMPOSIO_API_KEY
+  - OPENAI_API_KEY
+
+commands:
+  local_install: npm install
+  install: pnpm install
+  run: node script.js

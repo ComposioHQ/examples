@@ -1,0 +1,23 @@
+id: code_interpreter
+name: Code Interpreter
+description: Write code in Python
+
+metadata:
+  language: python
+  framework: langchain
+  tools_used:
+    - googlecalendar
+
+files_to_list:
+  - main.py
+  - pyproject.toml
+
+inputs_required_when_running:
+  - COMPOSIO_API_KEY
+  - OPENAI_API_KEY
+
+commands:
+  local_install: pip install -r requirements.txt
+  local_run: python main.py
+  install: uv sync
+  run: uv run main.py

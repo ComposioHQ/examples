@@ -1,0 +1,19 @@
+[project]
+name = "create_event"
+version = "0.1.0"
+authors = [
+  { name="Example Author", email="author@example.com" },
+]
+description = "A small example package"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "composio_llamaindex",
+    "composio_crewai",
+    "llama-index-llms-groq",
+    "python-dotenv"
+]
+
+[project.urls]
+Homepage = "https://github.com/example/example"
+Issues = "https://github.com/example/example/issues"

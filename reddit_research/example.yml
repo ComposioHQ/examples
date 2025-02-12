@@ -1,0 +1,24 @@
+id: reddit_research
+name: Research Reddit Subreddits
+description: Research and analyze Reddit subreddits using natural language
+
+metadata:
+  language: javascript
+  framework: vercel-ai
+  tools_used:
+    - reddit
+
+files_to_list:
+  - script.js
+  - utils.js
+  - package.json
+
+inputs_required_when_running:
+  - COMPOSIO_API_KEY
+  - OPENAI_API_KEY
+  - entityId
+
+commands:
+  local_install: npm install
+  install: pnpm install
+  run: node script.js

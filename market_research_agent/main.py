@@ -3,13 +3,27 @@ from llama_index.core.agent import FunctionCallingAgentWorker
 from llama_index.core.llms import ChatMessage
 from llama_index.llms.openai import OpenAI
 from dotenv import load_dotenv
-from pathlib import Path
+from utils import creating_connection
 import os
 
 load_dotenv()
 llm = OpenAI(model='gpt-4o',api_key=os.getenv('OPENAI_API_KEY'))
-
+os.environ['ENTITY_ID']='helloyo'
 composio_toolset = ComposioToolSet(api_key=os.getenv('COMPOSIO_API_KEY'))
+tavily_response = composio_toolset.get_expected_params_for_user(app=App.TAVILY) 
+googledocs_response = composio_toolset.get_expected_params_for_user(app=App.GOOGLEDOCS)
+
+print(tavily_response)
+print(googledocs_response)
+creating_connection(os.getenv('ENTITY_ID'),'TAVILY',composio_toolset)
+creating_connection(os.getenv('ENTITY_ID'),'GOOGLEDOCS',composio_toolset)
+
+print(tavily_response)
+print(googledocs_response)
+
+#creating_connection(os.getenv('ENTITY_ID'),"TAVILY",composio_toolset)
+#creating_connection(os.getenv('ENTITY_ID'),"GOOGLEDOCS",composio_toolset)
+
 tools = composio_toolset.get_tools(apps = [App.TAVILY, App.GOOGLEDOCS])
 
 prefix_messages = [
@@ -28,6 +42,7 @@ prefix_messages = [
         - Competitor Analysis
         - Competitor Benchmarking
         - Idea Validation
+        First Research and then create the Google Doc with all the content
              """
         )
     )

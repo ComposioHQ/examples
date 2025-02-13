@@ -1,0 +1,26 @@
+id: market_research
+name: Market Research Agent
+description: Research and analyze market trends, competitors, and industry data using natural language
+
+metadata:
+  language: python
+  framework: llamaindex
+  tools_used:
+    - tavily
+    - googledocs
+
+files_to_list:
+  - main.py
+  - utils.py
+  - pyproject.toml
+
+inputs_required_when_running:
+  - COMPOSIO_API_KEY
+  - OPENAI_API_KEY
+  - entityId
+
+commands:
+  local_install: pip install -r requirements.txt
+  local_run: python main.py
+  install: uv sync
+  run: uv run main.py

@@ -1,0 +1,26 @@
+id: scheduling_agent
+name: Scheduling Agent
+description: Schedule calls on your google calendar based on the received emails
+
+metadata:
+  language: python
+  framework: llamaindex
+  tools_used:
+    - gmail
+    - googlecalendar
+
+files_to_list:
+  - main.py
+  - utils.py
+  - pyproject.toml
+
+inputs_required_when_running:
+  - COMPOSIO_API_KEY
+  - OPENAI_API_KEY
+  - entityId
+
+commands:
+  local_install: pip install -r requirements.txt
+  local_run: python main.py
+  install: uv sync
+  run: uv run main.py

@@ -18,6 +18,7 @@ async function setupUserConnectionIfNotExists(entityId, toolset) {
   } catch{
     const newConnection = await entity.initiateConnection({
       appName: appName,
+      entity: entityId
     });
     console.log("Log in via: ", newConnection.redirectUrl);
     return await newConnection.waitUntilActive(100);
@@ -45,7 +46,7 @@ async function run() {
       resolve(`r/${answer}/`);
     });
   });
-
+  process.env.entityId='Yo'
   // Setup entity and ensure connection
   const entityId = process.env.entityId;
   await setupUserConnectionIfNotExists(entityId, toolset);
@@ -66,7 +67,7 @@ async function run() {
   const final_output = await generateText({
     model: openai("gpt-4o"),
     streamText: false,
-    prompt: `This is the tool call: ${output.toolCalls} and tool result: ${output.toolResults}. Explain the results and outcomes to the user.`,
+    prompt: `This is the tool call: ${JSON.stringify(output.toolCalls)} and tool result: ${JSON.stringify(output.toolResults)}. Explain the results and outcomes to the user.`,
     maxToolRoundtrips: 5,
   });
   spinner.stop();

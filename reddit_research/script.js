@@ -15,6 +15,8 @@ async function setupUserConnectionIfNotExists(entityId, toolset) {
     const connection = await entity.getConnection({
       app: appName,
     });
+    return connection;
+
   } catch{
     const newConnection = await entity.initiateConnection({
       appName: appName,
@@ -24,7 +26,6 @@ async function setupUserConnectionIfNotExists(entityId, toolset) {
     return await newConnection.waitUntilActive(100);
   }
 
-  return connection;
 }
 
 async function run() {

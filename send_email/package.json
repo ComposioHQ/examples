@@ -13,7 +13,8 @@
     "composio-core": "^0.5.7",
     "dotenv": "^16.4.5",
     "langchain": "^0.2.20",
-    "ora": "^8.2.0"
+    "ora": "^8.2.0",
+    "inquirer":"latest"
   },
   "keywords": [],
   "author": "",

@@ -12,7 +12,7 @@ const run = async () => {
     apiKey: process.env.COMPOSIO_API_KEY,
   });
   await setupUserConnectionIfNotExists(
-    process.env.entityId || "default",
+    process.env.entityId,
     "gmail",
     toolset
   );

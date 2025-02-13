@@ -1,0 +1,18 @@
+[project]
+name = "chat_with_sheets"
+version = "0.1.0"
+authors = [
+  { name="Example Author", email="author@example.com" },
+]
+description = "Chat with Google Sheets using LlamaIndex"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "composio_llamaindex",
+    "llama-index-llms-openai",
+    "python-dotenv"
+]
+
+[project.urls]
+Homepage = "https://github.com/example/example"
+Issues = "https://github.com/example/example/issues"

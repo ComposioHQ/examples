@@ -4,12 +4,13 @@ from composio_llamaindex import App, ComposioToolSet
 from llama_index.core.agent import FunctionCallingAgentWorker
 from llama_index.core.llms import ChatMessage
 from llama_index.llms.openai import OpenAI
+from utils import creating_connection
 from pathlib import Path
 
 load_dotenv()
 composio_toolset = ComposioToolSet(api_key=os.getenv("COMPOSIO_API_KEY"))
+creating_connection(os.getenv('ENTITY_ID'),'GOOGLESHEETS',composio_toolset)
 tools = composio_toolset.get_tools(apps=[App.GOOGLESHEETS])
-
 
 llm = OpenAI(model="gpt-4o", api_key=os.environ['OPENAI_API_KEY'])
 

@@ -15,7 +15,7 @@ files_to_list:
 inputs_required_when_running:
   - COMPOSIO_API_KEY
   - OPENAI_API_KEY
-  - entityId
+  - ENTITY_ID
 
 commands:
   local_install: pip install -r requirements.txt

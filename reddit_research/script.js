@@ -47,8 +47,7 @@ async function run() {
       resolve(`r/${answer}/`);
     });
   });
-  process.env.entityId='Yo'
-  // Setup entity and ensure connection
+
   const entityId = process.env.entityId;
   await setupUserConnectionIfNotExists(entityId, toolset);
 

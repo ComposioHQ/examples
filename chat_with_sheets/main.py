@@ -18,6 +18,7 @@ llm = OpenAI(model="gpt-4o", api_key=os.environ['OPENAI_API_KEY'])
 
 sheet_url = input('Enter the sheet link:')
 main_task = input("Enter the task you want to perform (or type 'exit' to quit): ")
+main_task1 = input("4 ")
 
 prefix_messages = [
     ChatMessage(
@@ -31,12 +32,12 @@ prefix_messages = [
 
 
 agent = FunctionCallingAgentWorker(
-tools=tools,
-llm=llm,
-prefix_messages=prefix_messages,
-max_function_calls=10,
-allow_parallel_tool_calls=False,
-verbose=True,
+    tools=tools,
+    llm=llm,
+    prefix_messages=prefix_messages,
+    max_function_calls=10,
+    allow_parallel_tool_calls=False,
+    verbose=True,
 ).as_agent()
 
 response = agent.chat(f"On this sheet at link:{sheet_url}, perform the following action:{main_task}")

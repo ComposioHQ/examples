@@ -6,6 +6,8 @@ from llama_index.core.llms import ChatMessage
 from llama_index.llms.openai import OpenAI
 from utils import creating_connection
 from pathlib import Path
+import sys 
+
 
 load_dotenv()
 
@@ -16,10 +18,11 @@ tools = composio_toolset.get_tools(apps=[App.GOOGLESHEETS], entity_id=os.getenv(
 
 llm = OpenAI(model="gpt-4o", api_key=os.environ['OPENAI_API_KEY'])
 
-sheet_url = input('Enter the sheet link:')
-main_task = input("Enter the task you want to perform (or type 'exit' to quit): ")
-main_task1 = input("4 ")
+print('Enter the sheet link:')
+sheet_url = sys.stdin.readline() 
 
+print("Enter the task you want to perform (or type 'exit' to quit): ")
+task = sys.stdin.readline()
 prefix_messages = [
     ChatMessage(
         role="system",
@@ -40,5 +43,5 @@ agent = FunctionCallingAgentWorker(
     verbose=True,
 ).as_agent()
 
-response = agent.chat(f"On this sheet at link:{sheet_url}, perform the following action:{main_task}")
+response = agent.chat(f"On this sheet at link:{sheet_url}, perform the following action:{task}")
 print("Response:", response)

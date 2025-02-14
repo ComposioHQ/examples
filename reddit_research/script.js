@@ -8,8 +8,11 @@ import readline from "readline";
 dotenv.config();
 
 const appName = "reddit";
-
-async function setupUserConnectionIfNotExists(entityId, toolset) {
+const toolset = new VercelAIToolSet({
+  apiKey: process.env.COMPOSIO_API_KEY,
+  entityId: process.env.entityId
+});
+async function setupUserConnectionIfNotExists(entityId) {
   const entity = await toolset.client.getEntity(entityId);
   try{
     const connection = await entity.getConnection({
@@ -29,10 +32,6 @@ async function setupUserConnectionIfNotExists(entityId, toolset) {
 }
 
 async function run() {
-  // Setup toolset
-  const toolset = new VercelAIToolSet({
-    apiKey: process.env.COMPOSIO_API_KEY,
-  });
 
   // Create readline interface
   const rl = readline.createInterface({
@@ -49,7 +48,9 @@ async function run() {
   });
 
   const entityId = process.env.entityId;
-  await setupUserConnectionIfNotExists(entityId, toolset);
+  await setupUserConnectionIfNotExists(
+    process.env.entityId, 
+  );
 
   // Retrieve tools for the specified app
   const tools = await toolset.getTools({ apps: [appName] }, entityId);

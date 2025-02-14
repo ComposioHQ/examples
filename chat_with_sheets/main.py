@@ -8,13 +8,15 @@ from utils import creating_connection
 from pathlib import Path
 
 load_dotenv()
-composio_toolset = ComposioToolSet(api_key=os.getenv("COMPOSIO_API_KEY"))
+composio_toolset = ComposioToolSet(api_key=os.getenv("COMPOSIO_API_KEY"), entity_id=os.getenv('ENTITY_ID'))
 creating_connection(os.getenv('ENTITY_ID'),'GOOGLESHEETS',composio_toolset)
 tools = composio_toolset.get_tools(apps=[App.GOOGLESHEETS])
 
 llm = OpenAI(model="gpt-4o", api_key=os.environ['OPENAI_API_KEY'])
 
 sheet_url = input('Enter the sheet link:')
+main_task = input("Enter the task you want to perform (or type 'exit' to quit): ")
+
 prefix_messages = [
     ChatMessage(
         role="system",
@@ -25,7 +27,6 @@ prefix_messages = [
     )
 ]
 
-main_task = input("Enter the task you want to perform (or type 'exit' to quit): ")
 
 agent = FunctionCallingAgentWorker(
 tools=tools,

@@ -8,7 +8,7 @@ import os
 
 load_dotenv()
 llm = OpenAI(model='gpt-4o',api_key=os.getenv('OPENAI_API_KEY'))
-composio_toolset = ComposioToolSet(api_key=os.getenv('COMPOSIO_API_KEY'))
+composio_toolset = ComposioToolSet(api_key=os.getenv('COMPOSIO_API_KEY'), entity_id=os.getenv('ENTITY_ID'))
 creating_connection(os.getenv('ENTITY_ID'),'TAVILY',composio_toolset)
 creating_connection(os.getenv('ENTITY_ID'),'GOOGLEDOCS',composio_toolset)
 

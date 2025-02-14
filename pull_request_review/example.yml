@@ -1,0 +1,24 @@
+id: pull_request_review
+name: Pull Request Review
+description: Write code in Python
+
+metadata:
+  language: python
+  framework: crewai
+  tools_used:
+    - github
+
+files_to_list:
+  - main.py
+  - pyproject.toml
+
+inputs_required_when_running:
+  - COMPOSIO_API_KEY
+  - OPENAI_API_KEY
+  - ENTITY_ID
+
+commands:
+  local_install: pip install -r requirements.txt
+  local_run: python main.py
+  install: uv sync
+  run: uv run main.py

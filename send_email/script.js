@@ -10,6 +10,7 @@ const llm = new ChatOpenAI({ apiKey: process.env.OPENAI_API_KEY });
 const run = async () => {
   const toolset = new LangchainToolSet({
     apiKey: process.env.COMPOSIO_API_KEY,
+    entityId: process.env.entityId
   });
   await setupUserConnectionIfNotExists(
     process.env.entityId,
@@ -17,7 +18,7 @@ const run = async () => {
     toolset
   );
   const { emailContent, recipientEmail } = await getEmailPrompts();
-  const tools = await toolset.getTools({ actions: ["GMAIL_SEND_EMAIL"] });
+  const tools = await toolset.getTools({ actions: ["GMAIL_SEND_EMAIL"], entityId:process.env.entityId });
 
   const agent = await createOpenAIFunctionsAgent({
     llm,

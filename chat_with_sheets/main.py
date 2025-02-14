@@ -8,6 +8,8 @@ from utils import creating_connection
 from pathlib import Path
 
 load_dotenv()
+
+print(os.getenv('ENTITY_ID'))
 composio_toolset = ComposioToolSet(api_key=os.getenv("COMPOSIO_API_KEY"), entity_id=os.getenv('ENTITY_ID'))
 creating_connection(os.getenv('ENTITY_ID'),'GOOGLESHEETS',composio_toolset)
 tools = composio_toolset.get_tools(apps=[App.GOOGLESHEETS], entity_id=os.getenv('ENTITY_ID'))

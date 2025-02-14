@@ -18,11 +18,16 @@ tools = composio_toolset.get_tools(apps=[App.GOOGLESHEETS], entity_id=os.getenv(
 
 llm = OpenAI(model="gpt-4o", api_key=os.environ['OPENAI_API_KEY'])
 
-print('Enter the sheet link:')
-sheet_url = sys.stdin.readline() 
+def get_valid_input(prompt):
+    while True:
+        print(prompt)
+        value = input().strip()
+        if value:
+            return value
+        print("Input cannot be empty. Please try again.")
 
-print("Enter the task you want to perform (or type 'exit' to quit): ")
-task = sys.stdin.readline()
+sheet_url = get_valid_input('Enter the sheet link:')
+task = get_valid_input("Enter the task you want to perform (or type 'exit' to quit): ")
 prefix_messages = [
     ChatMessage(
         role="system",

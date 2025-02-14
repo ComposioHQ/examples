@@ -9,7 +9,6 @@ def creating_connection(
     except:
         connection_details = entity.initiate_connection(app_name=app_name)
         print(f"Please connect your {app_name} account with the following link:{connection_details.redirectUrl}")
-        connection_details.wait_until_active(client=toolset.client, timeout=60)
-        return connection_details
+        return connection_details.wait_until_active(client=toolset.client, timeout=60)
     print('\n')
     return connection_details

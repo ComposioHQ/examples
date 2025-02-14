@@ -10,7 +10,7 @@ from pathlib import Path
 load_dotenv()
 composio_toolset = ComposioToolSet(api_key=os.getenv("COMPOSIO_API_KEY"), entity_id=os.getenv('ENTITY_ID'))
 creating_connection(os.getenv('ENTITY_ID'),'GOOGLESHEETS',composio_toolset)
-tools = composio_toolset.get_tools(apps=[App.GOOGLESHEETS])
+tools = composio_toolset.get_tools(apps=[App.GOOGLESHEETS], entity_id=os.getenv('ENTITY_ID'))
 
 llm = OpenAI(model="gpt-4o", api_key=os.environ['OPENAI_API_KEY'])
 

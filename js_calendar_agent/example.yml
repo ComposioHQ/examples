@@ -1,0 +1,24 @@
+id: calendar_scheduler
+name: Calendar Event Scheduler
+description: Schedule events on Google Calendar using natural language
+
+metadata:
+  language: javascript
+  framework: vercel-ai
+  tools_used:
+    - googlecalendar
+
+files_to_list:
+  - script.js
+  - utils.js
+  - package.json
+
+inputs_required_when_running:
+  - COMPOSIO_API_KEY
+  - OPENAI_API_KEY
+  - entityId
+
+commands:
+  local_install: npm install
+  install: pnpm install
+  run: node script.js
